@@ -4,7 +4,7 @@
       @click="emit('toggle-sidebar')"
       class="flex items-center justify-center rounded transition-colors w-8 h-8 text-gray-700 hover:bg-black/10"
     >
-      <!-- <MenuIcon class="w-6" /> -->
+      <Bars4Icon class="w-6" />
     </button>
     <Menu as="div" class="relative inline-block text-left">
       <MenuButton class="flex items-center">
@@ -13,10 +13,10 @@
           class="rounded-full w-8 mr-2"
         />
         <small>{{ currentUser.name }}</small>
-        <!-- <ChevronDownIcon
+        <ChevronDownIcon
           class="h-5 w-5 text-violet-200 hover:text-violet-100"
           aria-hidden="true"
-        /> -->
+        />
       </MenuButton>
 
       <transition
@@ -38,11 +38,11 @@
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >
-                <!-- <UserIcon
+                <UserIcon
                   :active="active"
                   class="mr-2 h-5 w-5 text-indigo-400"
                   aria-hidden="true"
-                /> -->
+                />
                 Profile
               </button>
             </MenuItem>
@@ -54,11 +54,11 @@
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >
-                <!-- <LogoutIcon
+                <ArrowRightIcon
                   :active="active"
                   class="mr-2 h-5 w-5 text-indigo-400"
                   aria-hidden="true"
-                /> -->
+                />
                 Logout
               </button>
             </MenuItem>
@@ -70,9 +70,15 @@
 </template>
 
 <script setup>
-// import { MenuIcon, LogoutIcon, UserIcon } from "@heroicons/vue/outline";
+import {
+  Bars4Icon,
+  ArrowRightIcon,
+  MenuIcon,
+  LogoutIcon,
+  UserIcon,
+} from "@heroicons/vue/24/outline";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
-// import { ChevronDownIcon } from "@heroicons/vue/solid";
+import { ChevronDownIcon } from "@heroicons/vue/24/solid";
 import store from "../store";
 import router from "../router";
 import { computed } from "vue";
@@ -82,9 +88,10 @@ const emit = defineEmits(["toggle-sidebar"]);
 const currentUser = computed(() => store.state.user.data);
 
 function logout() {
-  store.dispatch("logout").then(() => {
-    router.push({ name: "login" });
-  });
+  //   store.dispatch("logout").then(() => {
+  //     router.push({ name: "login" });
+  //   });
+  console.log("logout");
 }
 </script>
 

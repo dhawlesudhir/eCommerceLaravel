@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "@/store";
 import Dashboard from "@/views/Dashboard.vue";
 import Login from "@/views/login/Login.vue";
 import ForgotPassword from "@/views/login/ForgotPassword.vue";
@@ -21,7 +22,7 @@ const routes = [
     name: "app",
     redirect: "/app/dashboard",
     component: AppLayout,
-    meta: { requredAuth: true },
+    meta: { requiresAuth: true },
     children: [
       { path: "dashboard", name: "app.dashboard", component: Dashboard },
       { path: "products", name: "app.products", component: Products },
@@ -46,7 +47,7 @@ const routes = [
         path: "/report",
         name: "reports",
         component: Reports,
-        meta: { requredAuth: true },
+        meta: { requiresAuth: true },
         children: [
           {
             path: "orders/:date?",
@@ -63,12 +64,18 @@ const routes = [
     ],
   },
   { name: "dashboard", path: "/dashboard", component: Dashboard },
-  { name: "login", path: "/login", component: Login },
+  {
+    name: "login",
+    path: "/login",
+    component: Login,
+    meta: { requiresGuest: true },
+  },
   { name: "SetPassword", path: "/set-password/:token", component: SetPassword },
   {
     name: "ForgotPassword",
     path: "/forgotpassword",
     component: ForgotPassword,
+    meta: { requiresGuest: true },
   },
   {
     path: "/:pathMatch(.*)",

@@ -27,11 +27,11 @@
             >Password</label
           >
           <div class="text-sm">
-            <a
-              href="/forgotpassword"
+            <router-link
+              :to="{ name: 'ForgotPassword' }"
               class="font-semibold text-indigo-600 hover:text-indigo-500"
-              >Forgot password?</a
-            >
+              >Forgot password?
+            </router-link>
           </div>
         </div>
         <div class="mt-2">
