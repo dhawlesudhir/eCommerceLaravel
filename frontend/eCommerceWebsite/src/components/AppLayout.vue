@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentUser.id" class="bg-gray-200 flex">
+  <div v-if="currentUser.id" class="h-full bg-gray-200 flex">
     <!--    Sidebar-->
     <Sidebar :class="{ '-ml-[170px]': !sidebarOpened }" />
     <!--/    Sidebar-->
@@ -23,7 +23,7 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import Sidebar from "@/components/Sidebar.vue";
 import Navbar from "@/components/Navbar.vue";
-import store from "../store";
+import store from "@/store";
 // import Spinner from "./core/Spinner.vue";
 // import Toast from "./core/Toast.vue";
 
@@ -41,16 +41,23 @@ function updateSidebarState() {
   sidebarOpened.value = window.outerWidth > 768;
 }
 
-// onMounted(() => {
-//   store.dispatch("getCurrentUser");
-//   store.dispatch("getCountries");
-//   updateSidebarState();
-//   window.addEventListener("resize", updateSidebarState);
-// });
+const user = {
+  id: 4,
+  name: "sudhir dhawle",
+  email: "admin@admin.com",
+  created_at: "2023-04-20 09:59:49",
+};
 
-// onUnmounted(() => {
-//   window.removeEventListener("resize", updateSidebarState);
-// });
+onMounted(() => {
+  store.dispatch("getCurrentUser", user);
+  //   store.dispatch("getCountries");
+  updateSidebarState();
+  window.addEventListener("resize", updateSidebarState);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateSidebarState);
+});
 </script>
 
 <style scoped></style>
